@@ -14,7 +14,7 @@ class App extends Component {
   }
   handleSubmit(){
 	
-	fetch("http://localhost:5000/" + this.text).then(
+	fetch("http://wongbrandon.com:5000/" + this.text).then(
 		(res) => {
 			return res.text()
 		}
@@ -37,7 +37,7 @@ class App extends Component {
   render() {
 	let result = (<div></div>);
 	if(this.state.lastPkg !== ""){
-		if(this.state.lastResult == 200){
+		if(this.state.lastResult === 200){
 			result = (
 				<div>
 					<h3><code>{this.state.lastPkg}</code></h3>
@@ -45,12 +45,18 @@ class App extends Component {
 					You Lose!
 				</div>
 			);
-		}else if(this.state.lastResult == 404){
+		}else if(this.state.lastResult === 404){
 			result = (
 				<div>
 					<h3><code>{this.state.lastPkg}</code></h3>
 					<p>{"isn't"}  a real npm package!</p>
 					You Win!
+				</div>
+			);
+		}else {
+			result = (
+				<div>
+					<h3>Failed to check package name. Is NPM down?</h3>
 				</div>
 			);
 		}
